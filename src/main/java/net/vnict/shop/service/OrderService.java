@@ -15,6 +15,6 @@ public interface OrderService {
 	
 	void save(Order order);
 	
-	void delete(Integer orderId);
+	boolean delete(Integer orderId);
 	
 }

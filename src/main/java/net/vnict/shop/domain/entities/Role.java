@@ -12,14 +12,14 @@ public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false, unique = true)
 	private int id;
 	
 	@Column(name = "name", nullable = false)
 	private String name;
 	
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
     private Set<User> users = new HashSet<>();
 
 	public int getId() {

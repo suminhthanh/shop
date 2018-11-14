@@ -1,19 +1,16 @@
 package net.vnict.shop.service;
 
-import net.vnict.shop.domain.model.Order;
 import net.vnict.shop.domain.entities.Item;
 import net.vnict.shop.domain.entities.User;
+import net.vnict.shop.domain.model.Order;
 import net.vnict.shop.repository.OrderRepository;
 import net.vnict.shop.repository.ProductRepository;
 import net.vnict.shop.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -73,11 +70,13 @@ public class OrderServiceImpl implements OrderService {
 			dbOrder.addItem(item);
 		}
 		
-		dbOrder = orderRepository.save(dbOrder);
+		orderRepository.save(dbOrder);
 	}
 
 	@Override
-	public void delete(Integer orderId) {
-
+	public boolean delete(Integer orderId) {
+		net.vnict.shop.domain.entities.Order order = orderRepository.findById(orderId).orElseThrow(()-> new NoSuchElementException());
+		orderRepository.delete(order);
+		return true;
 	}
 }

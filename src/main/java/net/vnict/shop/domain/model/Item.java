@@ -7,7 +7,6 @@ public class Item implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int productId;
-    private String productImage;
     private String productName;
     private int productPrice;
     private int quantity;
@@ -17,7 +16,6 @@ public class Item implements Serializable {
 
     public Item(int productId, String productImage, String productName, int productPrice, int quantity) {
         this.productId = productId;
-        this.productImage = productImage;
         this.productName = productName;
         this.productPrice = productPrice;
         this.quantity = quantity;
@@ -29,14 +27,6 @@ public class Item implements Serializable {
 
     public void setProductId(int productId) {
         this.productId = productId;
-    }
-
-    public String getProductImage() {
-        return productImage;
-    }
-
-    public void setProductImage(String productImage) {
-        this.productImage = productImage;
     }
 
     public String getProductName() {

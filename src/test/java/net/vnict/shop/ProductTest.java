@@ -4,7 +4,6 @@ import net.vnict.shop.domain.entities.Category;
 import net.vnict.shop.domain.entities.Product;
 import net.vnict.shop.service.CategoryService;
 import net.vnict.shop.service.ProductService;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +36,14 @@ public class ProductTest {
 
     @Test
     public void testProduct_getOneNotFound() {
-      //  assertThrows(NoSuchElementException.class, () -> {
-            productService.findOne(1123123);
-      //  });
+        //  assertThrows(NoSuchElementException.class, () -> {
+        productService.findOne(1123123);
+        //  });
     }
 
     @Test
-    public void testProduct_getAll(){
-        List<Product> products= (List<Product>) productService.findAll();
+    public void testProduct_getAll() {
+        List<Product> products = (List<Product>) productService.findAll();
         assertThat(0).isLessThan(products.size());
     }
 
@@ -59,12 +58,11 @@ public class ProductTest {
         product.setPrice(50000);
         productService.save(product);
         List<Product> products = (List<Product>) productService.findAll();
-       Product product1 = productService.findOne(products.size()-1);
-       assertThat(product.getName()).isEqualTo(product1.getName());
+        Product product1 = productService.findOne(products.size() - 1);
+        assertThat(product.getName()).isEqualTo(product1.getName());
     }
 
     @Test
-
     public void testProduct_saveFail_categoryNotFound() throws Exception {
         Category category = categoryService.findOne(666);
         Product product = new Product();
@@ -77,20 +75,23 @@ public class ProductTest {
         });
     }
 
-    @Test void testProduct_deleteOK(){
-        Product product = productService.findOne((int) (productService.countAll()-1));
-        productService.delete((int) (productService.countAll()-1));
-        assertThat(product).isNotEqualTo(productService.findOne((int) (productService.countAll()-1)));
+    @Test
+    void testProduct_deleteOK() {
+        Product product = productService.findOne((int) (productService.countAll() - 1));
+        productService.delete((int) (productService.countAll() - 1));
+        assertThat(product).isNotEqualTo(productService.findOne((int) (productService.countAll() - 1)));
     }
 
-     @Test void testProduct_deleteFail_productNotFound(){
-         assertThrows(NoSuchElementException.class, () -> {
-             productService.delete(123);
-         });
+    @Test
+    void testProduct_deleteFail_productNotFound() {
+        assertThrows(NoSuchElementException.class, () -> {
+            productService.delete(123);
+        });
 
-     }
+    }
 
-    @Test void testProduct_countAll(){
+    @Test
+    void testProduct_countAll() {
         assertThat(0).isLessThan((int) productService.countAll());
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -28,12 +29,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User findOne(Integer id) {
-		return null;
+		return userRepository.findById(id).orElse(null);
 	}
 
 	@Override
 	public void delete(Integer id) {
-		User user = userRepository.findById(id).get();
+		User user = userRepository.findById(id).orElseThrow(()-> new NoSuchElementException());
 		userRepository.delete(user);
 	}
 
