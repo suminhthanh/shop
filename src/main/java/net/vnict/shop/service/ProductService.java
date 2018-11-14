@@ -7,16 +7,10 @@ import java.util.List;
 public interface ProductService {
 
 	Iterable<Product> findAll();
-	
-	List<Product> findLatest(int page, int size);
-	
-	List<Product> search(String keyword);
-	
+
 	List<Product> findByCategoryId(Integer categoryId);
 
 	Product findOne(Integer id);
-	
-	Product findOneWithCategory(Integer id);
 
 	long countAll();
 

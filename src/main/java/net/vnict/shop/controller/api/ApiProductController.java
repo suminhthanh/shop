@@ -17,20 +17,5 @@ public class ApiProductController {
 	public ApiProductController(ProductService productService) {
 		this.productService = productService;
 	}
-
-	@GetMapping("/product/latest")
-	public ResponseEntity<List<Product>> findLatest() {
-		return new ResponseEntity<>(productService.findLatest(0, 10), HttpStatus.OK);
-	}
-	
-	@GetMapping("/product/search")
-	public ResponseEntity<List<Product>> search(@RequestParam("keyword") String keyword) {
-		return new ResponseEntity<>(productService.search(keyword), HttpStatus.OK);
-	}
-	
-	@GetMapping("/product/{id}")
-	public ResponseEntity<?> findById(@PathVariable("id") Integer id) {
-		return new ResponseEntity<>(productService.findByCategoryId(id), HttpStatus.OK);
-	}
 		
 }

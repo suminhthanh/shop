@@ -38,13 +38,6 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Page<net.vnict.shop.domain.entities.Order> findLatest(int page, int size) {
-		PageRequest pageRequest = new PageRequest(page, size, Sort.Direction.DESC, "created");
-		return orderRepository.findLatest(pageRequest);
-	}
-	
-	@Override
-	@Transactional(readOnly = true)
 	public List<net.vnict.shop.domain.entities.Order> findByUser(User user) {
 		return orderRepository.findByUser(user);
 	}
@@ -53,12 +46,6 @@ public class OrderServiceImpl implements OrderService {
 	@Transactional(readOnly = true)
 	public net.vnict.shop.domain.entities.Order findOne(Integer id) {
 		return orderRepository.findOne(id);
-	}
-	
-	@Override
-	@Transactional(readOnly = true)
-	public long countAll() {
-		return orderRepository.count();
 	}
 
 	@Override

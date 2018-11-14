@@ -10,8 +10,6 @@ public interface UserService {
 	
 	User findOne(Integer id);
 	
-	long countAll();
-	
 	void delete(Integer id);
 	
 	net.vnict.shop.domain.model.User checkLogin(net.vnict.shop.domain.model.User user);

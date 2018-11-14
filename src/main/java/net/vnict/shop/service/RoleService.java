@@ -4,6 +4,6 @@ import net.vnict.shop.domain.entities.Role;
 
 public interface RoleService {
 
-	Role findByName(String name);
-	
+    Role findByName(String name);
+
 }

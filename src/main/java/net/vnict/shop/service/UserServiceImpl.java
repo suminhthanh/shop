@@ -30,12 +30,6 @@ public class UserServiceImpl implements UserService {
 	public User findOne(Integer id) {
 		return null;
 	}
-	
-	@Override
-	@Transactional(readOnly = true)
-	public long countAll() {
-		return userRepository.count();
-	}
 
 	@Override
 	public void delete(Integer id) {
