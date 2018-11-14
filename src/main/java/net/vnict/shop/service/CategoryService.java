@@ -8,8 +8,6 @@ public interface CategoryService {
 
 	Category findOne(Integer id);
 
-	long countAll();
-
 	Category save(Category category);
 
 	void delete(Integer id);

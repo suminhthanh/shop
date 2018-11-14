@@ -109,5 +109,10 @@ public class OrderTest {
         assertThat(orderService.delete(id)).isEqualTo(true);
     }
 
-
+    @Test
+    public void orderTest_findOrdersByUser(){
+        User user = userService.findOne(1);
+        List<net.vnict.shop.domain.entities.Order> orders = orderService.findByUser(user);
+        assertThat(orders.size()).isGreaterThan(0);
+    }
 }

@@ -5,8 +5,6 @@ import net.vnict.shop.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.NoSuchElementException;
-
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
@@ -26,12 +24,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional(readOnly = true)
 	public Category findOne(Integer id) {
 		return categoryRepository.findById(id).orElse(null);
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public long countAll() {
-		return categoryRepository.count();
 	}
 
 	@Override
