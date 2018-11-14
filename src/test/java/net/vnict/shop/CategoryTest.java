@@ -10,6 +10,7 @@ import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -31,7 +32,13 @@ public class CategoryTest {
     @Test
     public void testCategory_getCategoryNotFound() {
         Category category = categoryService.findOne(22222);
-        assertThat("Pizza").isEqualTo(category.getName());
+        assertThat(category).isEqualTo(null);
+    }
+
+    @Test
+    public void testCategory_getCategoryAll(){
+        List<Category> categories = (List<Category>) categoryService.findAll();
+        assertThat(categories.size()).isGreaterThan(0);
     }
 
     @Test
@@ -52,4 +59,17 @@ public class CategoryTest {
         });
     }
 
+    @Test
+    public void testCategory_deleteOK() {
+        List<Category> categories = (List<Category>) categoryService.findAll();
+        Category category = categories.get(categories.size()-1);
+        assertThat(categoryService.delete(category.getId())).isEqualTo(true);
+    }
+
+    @Test
+    public void testCategory_deleteFail() {
+        assertThrows(NoSuchElementException.class, () -> {
+            categoryService.delete(222);
+        });
+    }
 }

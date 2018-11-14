@@ -33,8 +33,10 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public void delete(Integer id) {
+	public boolean delete(Integer id) {
 		Category category = categoryRepository.findById(id).get();
+		if(category == null) return false;
 		categoryRepository.delete(category);
+		return true;
 	}
 }

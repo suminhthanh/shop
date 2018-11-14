@@ -10,6 +10,6 @@ public interface CategoryService {
 
 	Category save(Category category);
 
-	void delete(Integer id);
+	boolean delete(Integer id);
 	
 }
